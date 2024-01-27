@@ -69,6 +69,12 @@ class Server:
         """ creates and returns a dictionary 
         of data given and page_size, page,
         data, next_page, prev_page, total_pages """
+        # assertion operations
+        assert isinstance(page, int)
+        assert isinstance(page_size, int)
+        assert page > 0
+        assert page_size > 0
+
          # import dataset
         dataset = self.dataset()
 
