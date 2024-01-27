@@ -66,16 +66,10 @@ class Server:
         return dataset[start_index: end_index]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-        """ creates and returns a dictionary 
+        """ creates and returns a dictionary
         of data given and page_size, page,
         data, next_page, prev_page, total_pages """
-        # assertion operations
-        assert isinstance(page, int)
-        assert isinstance(page_size, int)
-        assert page > 0
-        assert page_size > 0
-
-         # import dataset
+        # import dataset
         dataset = self.dataset()
 
         # dataset pages and validation
@@ -89,7 +83,7 @@ class Server:
         page_dict["page_size"] = page_size
         page_dict["page"] = page
         page_dict["data"] = self.get_page(page, page_size)
-        page_dict["next_page"] = page + 1 if (page + 1) <= total_pages else None 
+        page_dict["next_page"] = page + 1 if page + 1 <= total_pages else None
         page_dict["prev_page"] = page - 1 if page != 0 else None
         page_dict["total_pages"] = total_pages
         return page_dict
