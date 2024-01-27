@@ -73,11 +73,9 @@ class Server:
         dataset = self.dataset()
 
         # dataset pages and validation
-        operation = len(dataset) / page_size
-        if isinstance(operation, int):
-            total_pages = operation
-        else:
-            total_pages = int(operation) + 1
+        operand = len(dataset) / page_size
+        operand_is_int = True if len(dataset) % page_size == 0 else False
+        total_pages = int(operand) if operand_is_int else int(operand) + 1
 
         data = self.get_page(page, page_size)
 
