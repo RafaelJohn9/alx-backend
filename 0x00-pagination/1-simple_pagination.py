@@ -7,7 +7,7 @@ import csv
 import math
 
 
-def index_range(page: int, page_size: int) ->    Tuple[int, int]:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     a function that takes two integer arg page
     and page_size and returns a tuple of them
@@ -15,6 +15,7 @@ def index_range(page: int, page_size: int) ->    Tuple[int, int]:
     startIndex = (page - 1) * page_size
     endIndex = startIndex + page_size
     return (startIndex, endIndex)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -45,17 +46,21 @@ class Server:
         assert page > 0
         assert page_size > 0
 
-        #import dataset
+        # import dataset
         dataset = self.dataset()
 
         # dataset pages and validation
         operation = len(dataset) / page_size
-        dataset_pages = operation if isinstance(operation, int) else (len(dataset) // page_size) + 1
+        if isinstance(operation, int):
+            dataset_pages = operation
+        else:
+            dataset_pages = (len(dataset) // page_size) + 1
+
         if dataset_pages < page:
             return []
 
         # validates and get page
         page_range = index_range(page, page_size)
-        start_index =  page_range[0]
+        start_index = page_range[0]
         end_index = page_range[1]
         return dataset[start_index: end_index]
