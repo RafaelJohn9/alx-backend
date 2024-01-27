@@ -65,7 +65,7 @@ class Server:
         end_index = page_range[1]
         return dataset[start_index: end_index]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """ creates and returns a dictionary
         of data given and page_size, page,
         data, next_page, prev_page, total_pages """
