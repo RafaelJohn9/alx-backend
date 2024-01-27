@@ -54,7 +54,7 @@ class Server:
         if isinstance(operation, int):
             dataset_pages = operation
         else:
-            dataset_pages = (len(dataset) // page_size) + 1
+            dataset_pages = int(operation)
 
         if dataset_pages < page:
             return []
@@ -77,7 +77,7 @@ class Server:
         if isinstance(operation, int):
             total_pages = operation
         else:
-            total_pages = (len(dataset) // page_size) + 1
+            total_pages = int(operation) + 1
 
         page_dict = {}
         page_dict["page_size"] = page_size
