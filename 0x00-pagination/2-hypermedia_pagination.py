@@ -79,10 +79,12 @@ class Server:
         else:
             total_pages = int(operation) + 1
 
+        data = self.get_page(page, page_size)
+
         page_dict = {}
-        page_dict["page_size"] = page_size if total_pages >= page else 0
+        page_dict["page_size"] = len(data)
         page_dict["page"] = page
-        page_dict["data"] = self.get_page(page, page_size)
+        page_dict["data"] = data
         page_dict["next_page"] = page + 1 if page + 1 <= total_pages else None
         page_dict["prev_page"] = page - 1 if page != 0 else None
         page_dict["total_pages"] = total_pages
