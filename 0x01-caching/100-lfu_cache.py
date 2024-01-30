@@ -53,7 +53,6 @@ class LFUCache(BaseCaching):
         updates mru list
         """
         minimum_value = min(list(self.__mru.values())[:-1])
-        print(self.__mru)
         for key, value in self.__mru.items():
             if value == minimum_value:
                 return key
