@@ -7,7 +7,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 class MRUCache(BaseCaching):
     """
-    cache using LRU algorithm
+    cache using MRU algorithm
     """
     def __init__(self):
         """
