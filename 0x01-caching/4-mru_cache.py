@@ -5,7 +5,7 @@ module that contains a cache
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class LRUCache(BaseCaching):
+class MRUCache(BaseCaching):
     """
     cache using LRU algorithm
     """
@@ -30,7 +30,7 @@ class LRUCache(BaseCaching):
         self.cache_data[key] = item
         max_items = BaseCaching.MAX_ITEMS
         if len(self.cache_data.keys()) > max_items:
-            delete_item_key = self.__mru[0]
+            delete_item_key = self.__mru[-2]
             print(f"DISCARD: {delete_item_key}")
             del(self.cache_data[delete_item_key])
             del(self.__mru[self.__mru.index(delete_item_key)])
