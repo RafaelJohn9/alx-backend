@@ -3,8 +3,8 @@
  */
 const kue = require('kue');
 let contact = {
-	phoneNumber: '',
-	message: ''
+	phoneNumber: '4153518780',
+	message: 'This the code to verify your account'
 };
 const push_notification_code = kue.createQueue();
 
