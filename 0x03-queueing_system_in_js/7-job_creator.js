@@ -51,20 +51,27 @@ const jobs = [
 
 const queue = kue.createQueue();
 const numberOfJobs = jobs.length;
-let count = 1;
 
-for (let job of jobs){
-	const job = queue.create('push_notification_code_2', job);
+for (let contact of jobs){
+	const job = queue.create('push_notification_code_2', contact);
 	job.save((err) =>{
 		if (err){
-			console.log(`Notification job ${job.id} failed: ${err}`);
+			console.error(`Notification job ${job.id} failed: ${err}`);
 		}else{
 			console.log(`Notification job created: ${job.id}`);
 		}
 	});
+
+	job.on('progress', (progress) =>{
+		console.log(`Notification job #${job.id} ${progress}% complete`)
+	});
+
 	job.on('complete', () =>{
 		console.log(`Notification job ${job.id} completed`);
 	});
-	console.log(`${Math.round((count / numberOfJobs) * 100)}% complete`)
-	count++;
+
+
+	job.on('failed', (err) =>{
+		console.log(`Notification job failed: ${err}`);
+	});
 }
