@@ -3,10 +3,11 @@
  */
 
 function createPushNotificationsJobs(jobs, queue){
-	if (!Array.isarray(queue)){
+	if (!Array.isArray(jobs)){
 		throw new Error("Jobs is not an array");
 	}
-	for (const job of jobs){
+
+	for (const contact of jobs){
 		const job = queue.create('push_notification_code_3', contact);
 		job.save((err) =>{
 			if (err){
@@ -27,3 +28,5 @@ function createPushNotificationsJobs(jobs, queue){
 		});
 	}
 }
+
+module.exports = createPushNotificationsJobs;
